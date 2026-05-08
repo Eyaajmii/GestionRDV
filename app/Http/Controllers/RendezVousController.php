@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StatutRdv;
 use App\Models\Medecin;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RendezVousController extends Controller
 {
@@ -203,5 +204,35 @@ class RendezVousController extends Controller
         $rdv->update(['statut' => StatutRdv::Termine]);
 
         return back()->with('success', 'Rendez-vous marqué comme terminé.');
+    }
+    //PDF
+    public function exportPdf()
+    {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            $rendezvous = RendezVous::with('medecin', 'patient')->get();
+            $patient = (object)['nom' => 'Tous les patients', 'prenom' => ''];
+        } elseif ($user->role === 'medecin') {
+            $medecin = $user->medecin;
+            $rendezvous = RendezVous::with('medecin', 'patient')
+                ->where('medecin_id', $medecin->id)
+                ->orderBy('date', 'desc')
+                ->get();
+            $patient = (object)['nom' => 'Dr. ' . $medecin->nom, 'prenom' => $medecin->prenom];
+        } else {
+            $patient = $user->patient;
+            if (!$patient) {
+                return back()->with('error', 'Profil patient introuvable.');
+            }
+
+            $rendezvous = RendezVous::with('medecin')
+                ->where('patient_id', $patient->id)
+                ->orderBy('date', 'desc')
+                ->get();
+        }
+
+        $pdf = Pdf::loadView('rendezvous.pdf', compact('rendezvous', 'patient'));
+        return $pdf->download('rendezvous-' . now()->format('d-m-Y') . '.pdf');
     }
 }

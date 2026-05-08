@@ -5,7 +5,6 @@
 <div class="min-h-screen bg-gray-50 py-8 px-6">
     <div class="max-w-6xl mx-auto space-y-6">
 
-        {{-- HEADER --}}
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-400 mb-0.5">Bonjour Docteur,</p>
@@ -19,7 +18,6 @@
             </div>
         </div>
 
-        {{-- STATS --}}
         @php
         $stats_cards = [
         [
@@ -78,7 +76,6 @@
             @endforeach
         </div>
 
-        {{-- RDV DU JOUR --}}
         <div>
             <p class="text-sm font-medium text-gray-500 mb-3">Rendez-vous du jour</p>
 
@@ -88,19 +85,16 @@
                 <div class="flex items-center justify-between px-4 py-3">
 
                     <div>
-                        {{-- NOM PATIENT --}}
                         <p class="text-sm font-medium text-gray-900">
                             {{ $r->patient->name ?? 'Patient' }}
                         </p>
 
-                        {{-- MOTIF --}}
                         <p class="text-xs text-gray-400">
                             {{ $r->motif }}
                         </p>
                     </div>
 
                     <div class="text-right">
-                        {{-- HEURE --}}
                         <p class="text-sm text-gray-500">
                             {{ $r->heure }}
                         </p>

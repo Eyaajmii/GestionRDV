@@ -4,7 +4,6 @@
 <div class="max-w-2xl mx-auto py-10 px-4">
     <div class="bg-white border border-blue-200 rounded-2xl p-8">
 
-        {{-- En-tête --}}
         <div class="flex items-center gap-3 mb-7 pb-5 border-b border-blue-100">
             <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,7 +21,6 @@
             </div>
         </div>
 
-        {{-- Erreurs --}}
         @if($errors->any())
         <div class="mb-5 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
             @foreach($errors->all() as $e)
@@ -38,7 +36,6 @@
             @csrf
             @method('PUT')
 
-            {{-- Section compte utilisateur --}}
             <div class="border border-blue-200 rounded-xl overflow-hidden">
 
                 <div class="flex items-center gap-2.5 px-4 py-3 bg-blue-50 border-b border-blue-200">
@@ -54,7 +51,6 @@
 
                 <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    {{-- Nom --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Nom utilisateur
@@ -75,7 +71,6 @@
                         </div>
                     </div>
 
-                    {{-- Email --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Email
@@ -99,7 +94,6 @@
                 </div>
             </div>
 
-            {{-- Informations médecin --}}
             <div class="border border-blue-200 rounded-xl overflow-hidden">
 
                 <div class="flex items-center gap-2.5 px-4 py-3 bg-blue-50 border-b border-blue-200">
@@ -115,7 +109,6 @@
 
                 <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    {{-- Nom --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Nom
@@ -128,7 +121,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Prénom --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Prénom
@@ -141,7 +133,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Spécialité --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Spécialité
@@ -154,7 +145,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Téléphone --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Téléphone
@@ -167,7 +157,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Email pro --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Email professionnel
@@ -180,7 +169,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Catégorie --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Catégorie
@@ -193,7 +181,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Expérience --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Expérience
@@ -206,7 +193,6 @@
                                class="w-full px-3 py-2.5 bg-blue-50 border border-blue-300 rounded-lg text-sm text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition">
                     </div>
 
-                    {{-- Statut --}}
                     <div>
                         <label class="block text-xs font-medium text-blue-600 uppercase tracking-wide mb-1.5">
                             Statut disponibilité
@@ -231,7 +217,6 @@
                 </div>
             </div>
 
-            {{-- Actions --}}
             <div class="flex justify-end gap-3 pt-2 border-t border-blue-100">
 
                 <a href="{{ route('medecin.index') }}"

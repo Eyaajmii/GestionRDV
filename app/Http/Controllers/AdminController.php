@@ -10,7 +10,6 @@ use App\Http\Controllers\MedecinController;
 
 class AdminController extends Controller
 {
-    // 📊 Dashboard Admin
     public function dashboard()
     {
         $stats = [
@@ -25,7 +24,6 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('stats'));
     }
 
-    //Gestion des médecins
     public function gestionMedecins(Request $request)
     {
         $query = Medecin::with('user');
@@ -42,27 +40,19 @@ class AdminController extends Controller
         return view('medecin.index', compact('medecins'));
     }
 
-    //Gestion des rendez-vous + filtres
     public function gestionRendezVous(Request $request)
     {
         $query = RendezVous::with(['medecin', 'patient']);
 
-        //filtre par statut
         if ($request->filled('statut')) {
             $query->where('statut', $request->statut);
         }
-
-        //filtre par date
         if ($request->filled('date')) {
             $query->whereDate('date', $request->date);
         }
-
-        // filtre par médecin
         if ($request->filled('medecin_id')) {
             $query->where('medecin_id', $request->medecin_id);
         }
-
-        //  recherche patient
         if ($request->filled('search')) {
             $query->whereHas('patient', function ($q) use ($request) {
                 $q->where('nom', 'like', '%' . $request->search . '%');
@@ -71,7 +61,7 @@ class AdminController extends Controller
 
         $rdvs = $query->latest()->paginate(10);
 
-        $medecins = Medecin::all(); // pour filtre select
+        $medecins = Medecin::all();
 
         return view('rendezvous.index', compact('rdvs', 'medecins'));
     }

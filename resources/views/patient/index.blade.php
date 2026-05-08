@@ -3,7 +3,6 @@
 @section('content')
 <div class="max-w-6xl mx-auto py-8 px-4">
 
-    {{-- En-tête --}}
     <div class="flex justify-between items-start mb-7">
         <div>
             <h1 class="text-xl font-medium text-blue-900">Liste des patients</h1>
@@ -19,7 +18,6 @@
 
     <div class="flex gap-5 items-start">
 
-        {{-- Tableau --}}
         <div class="flex-1 min-w-0">
             <div class="bg-white border border-blue-200 rounded-xl overflow-hidden">
                 <table class="w-full text-sm">
@@ -63,11 +61,9 @@
             </div>
         </div>
 
-        {{-- Panneau latéral --}}
         <div class="w-64 flex-shrink-0" id="side-panel">
             <div class="bg-white border border-blue-200 rounded-xl overflow-hidden">
 
-                {{-- État vide --}}
                 <div id="panel-empty" class="py-10 px-4 text-center">
                     <svg class="w-10 h-10 text-blue-200 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -75,7 +71,6 @@
                     <p class="text-xs text-blue-300">Cliquez sur un patient<br>pour voir ses détails</p>
                 </div>
 
-                {{-- Contenu patient --}}
                 <div id="panel-content" class="hidden">
                     <div class="bg-blue-50 px-4 py-4 border-b border-blue-200 flex items-center gap-3">
                         <div id="p-avatar"

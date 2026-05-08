@@ -1,6 +1,5 @@
 <aside class="w-64 bg-white border-r border-gray-200 flex-shrink-0 h-screen p-4">
 
-    {{-- HEADER --}}
     <div class="mb-6">
         <div class="flex items-center gap-2.5">
             <div class="w-9 h-9 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-center">

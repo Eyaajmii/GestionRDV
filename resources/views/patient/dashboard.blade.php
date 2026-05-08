@@ -5,7 +5,6 @@
 <div class="min-h-screen bg-gray-50 py-8 px-6">
     <div class="max-w-6xl mx-auto space-y-6">
 
-        {{-- HEADER --}}
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-400 mb-0.5">Bonjour,</p>
@@ -16,7 +15,6 @@
             </div>
         </div>
 
-        {{-- STATS --}}
         @php
         $stats_cards = [
             [
@@ -86,7 +84,6 @@
             @endforeach
         </div>
 
-        {{-- PROCHAINS RDV --}}
         <div>
             <p class="text-[13px] font-medium text-gray-500 mb-3">Prochains rendez-vous</p>
             <div class="bg-white border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-100">
@@ -123,10 +120,8 @@
             </div>
         </div>
 
-        {{-- HISTORIQUE + NOTIFICATIONS --}}
         <div class="grid md:grid-cols-2 gap-4">
 
-            {{-- HISTORIQUE --}}
             <div>
                 <p class="text-[13px] font-medium text-gray-500 mb-3">Historique récent</p>
                 <div class="bg-white border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-100">
@@ -154,7 +149,6 @@
                 </div>
             </div>
 
-            {{-- NOTIFICATIONS --}}
             <div>
                 <p class="text-[13px] font-medium text-gray-500 mb-3">Notifications</p>
                 <div class="bg-white border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-100">

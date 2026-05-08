@@ -3,8 +3,6 @@
 @section('content')
 <div class="max-w-2xl mx-auto py-10 px-4">
     <div class="bg-white border border-blue-200 rounded-2xl p-8">
-
-        {{-- En-tête --}}
         <div class="flex items-center gap-3 mb-7 pb-5 border-b border-blue-100">
             <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,7 +25,6 @@
             @csrf
             <input type="hidden" name="role" value="medecin">
 
-            {{-- Section compte utilisateur --}}
             <div class="border border-blue-200 rounded-xl overflow-hidden">
                 <div class="flex items-center gap-2.5 px-4 py-3 bg-blue-50 border-b border-blue-200">
                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +73,6 @@
                 </div>
             </div>
 
-            {{-- Section infos médecin --}}
             <div class="border border-blue-200 rounded-xl overflow-hidden">
                 <div class="flex items-center gap-2.5 px-4 py-3 bg-blue-50 border-b border-blue-200">
                     <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +112,6 @@
                 </div>
             </div>
 
-            {{-- Actions --}}
             <div class="flex justify-end gap-3 pt-2 border-t border-blue-100">
                 <a href="{{ route('medecin.index') }}"
                     class="inline-flex items-center gap-2 px-5 py-2.5 border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-700 text-sm font-medium rounded-lg transition-colors">

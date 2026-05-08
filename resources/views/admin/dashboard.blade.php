@@ -5,8 +5,6 @@
 <div class="min-h-screen bg-gray-50 py-8 px-6">
 
     <div class="max-w-6xl mx-auto space-y-6">
-
-        {{-- HEADER --}}
         <div class="flex items-center justify-between">
 
             <div>
@@ -21,8 +19,6 @@
             </div>
 
         </div>
-
-        {{-- STATS CARDS --}}
         @php
         $cards = [
         [
@@ -97,8 +93,6 @@
             @endforeach
 
         </div>
-
-        {{-- QUICK ACTIONS --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
             <a href="{{ route('patients.index') }}"

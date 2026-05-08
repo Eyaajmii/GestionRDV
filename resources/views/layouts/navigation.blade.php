@@ -2,7 +2,6 @@
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex items-center justify-between h-16 gap-4">
 
-            {{-- LOGO --}}
             <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 shrink-0">
                 <div class="w-9 h-9 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
@@ -16,7 +15,6 @@
                 </div>
             </a>
 
-            {{-- LIENS DESKTOP --}}
             <div class="hidden md:flex items-center gap-0.5">
                 @auth
                 @if(auth()->user()->patient || auth()->user()->medecin)
@@ -66,14 +64,12 @@
                 @endauth
             </div>
 
-            {{-- USER DESKTOP --}}
             @auth
             <div class="hidden md:flex items-center gap-2.5 shrink-0">
 
                 {{-- AVATAR + NOM (CLICABLE) --}}
                 <a href="{{ route('profile.edit') }}" class="flex items-center gap-2.5 hover:bg-gray-50 px-2 py-1 rounded-lg transition">
 
-                    {{-- CERCLE --}}
                     <div class="w-8 h-8 bg-indigo-50 border border-indigo-200 rounded-full flex items-center justify-center text-[11px] font-semibold text-indigo-600 shrink-0">
                         {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
                     </div>
@@ -93,10 +89,8 @@
 
                 </a>
 
-                {{-- SEPARATEUR --}}
                 <div class="w-px h-5 bg-gray-200 mx-1"></div>
 
-                {{-- LOGOUT --}}
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
@@ -115,7 +109,6 @@
             </div>
             @endauth
 
-            {{-- MOBILE TOGGLE --}}
             <button @click="open = !open"
                 class="md:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition border border-gray-200">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -127,7 +120,6 @@
         </div>
     </div>
 
-    {{-- MENU MOBILE --}}
     <div x-show="open"
         x-transition:enter="transition ease-out duration-150"
         x-transition:enter-start="opacity-0 -translate-y-1"

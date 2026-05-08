@@ -1,26 +1,24 @@
 @extends('layouts.app')
 
 @section('header')
-    Mon Profil
+Mon Profil
 @endsection
 
 @section('content')
 <div class="py-10">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
-        {{-- INFOS COMPTE --}}
         <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-100">
             <h3 class="text-base font-semibold text-gray-800 mb-4">
-                📧 Informations du compte
+                Informations du compte
             </h3>
             @include('profile.partials.update-profile-information-form')
         </div>
 
-        {{-- INFOS PATIENT --}}
         @if(auth()->user()->patient)
         <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-100">
             <h3 class="text-base font-semibold text-gray-800 mb-4">
-                🏥 Informations patient
+                Informations patient
             </h3>
             <form method="POST" action="{{ route('patients.update', auth()->user()->patient->id) }}" class="space-y-4">
                 @csrf
@@ -55,20 +53,19 @@
                 <div class="flex items-center gap-4 pt-2">
                     <x-primary-button>Enregistrer</x-primary-button>
                     @if(session('status') === 'patient-updated')
-                        <p x-data="{ show: true }" x-show="show" x-transition
-                           x-init="setTimeout(() => show = false, 2000)"
-                           class="text-sm text-green-600">✓ Sauvegardé.</p>
+                    <p x-data="{ show: true }" x-show="show" x-transition
+                        x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-green-600">✓ Sauvegardé.</p>
                     @endif
                 </div>
             </form>
         </div>
         @endif
 
-        {{-- INFOS MÉDECIN --}}
         @if(auth()->user()->medecin)
         <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-100">
             <h3 class="text-base font-semibold text-gray-800 mb-4">
-                👨‍⚕️ Informations médecin
+                Informations médecin
             </h3>
             <form method="POST" action="{{ route('medecins.update', auth()->user()->medecin->id) }}" class="space-y-4">
                 @csrf
@@ -108,16 +105,15 @@
                 <div class="flex items-center gap-4 pt-2">
                     <x-primary-button>Enregistrer</x-primary-button>
                     @if(session('status') === 'medecin-updated')
-                        <p x-data="{ show: true }" x-show="show" x-transition
-                           x-init="setTimeout(() => show = false, 2000)"
-                           class="text-sm text-green-600">✓ Sauvegardé.</p>
+                    <p x-data="{ show: true }" x-show="show" x-transition
+                        x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-green-600">✓ Sauvegardé.</p>
                     @endif
                 </div>
             </form>
         </div>
         @endif
 
-        {{-- MOT DE PASSE --}}
         <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-100">
             <h3 class="text-base font-semibold text-gray-800 mb-4">
                 🔒 Changer le mot de passe
@@ -125,7 +121,6 @@
             @include('profile.partials.update-password-form')
         </div>
 
-        {{-- SUPPRIMER COMPTE --}}
         <div class="p-6 bg-white shadow sm:rounded-xl border border-red-100">
             @include('profile.partials.delete-user-form')
         </div>

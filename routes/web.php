@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
     Route::resource('patients', PatientController::class);
+    Route::get('/rendezvous/export-pdf', [RendezVousController::class, 'exportPdf'])
+        ->name('rendezvous.export.pdf');
+
     Route::resource('rendezvous', RendezVousController::class);
     Route::patch('rendezvous/{id}/confirmer', [RendezVousController::class, 'confirmer'])
         ->name('rendezvous.confirmer');
@@ -44,7 +47,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('api.heures');
     Route::get('/patients/{patient}/resume-ia', [PatientController::class, 'resumeIA'])
         ->name('patient.resume');
-
     Route::middleware(['role:admin'])->group(function () {
 
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])

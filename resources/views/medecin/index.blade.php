@@ -2,8 +2,6 @@
 
 @section('content')
 <div class="max-w-6xl mx-auto py-8 px-4">
-
-    {{-- En-tête --}}
     <div class="flex justify-between items-start mb-7">
         <div>
             <h1 class="text-xl font-medium text-blue-900">Liste des médecins</h1>
@@ -20,7 +18,6 @@
 
     <div class="flex gap-5 items-start">
 
-        {{-- Tableau --}}
         <div class="flex-1 min-w-0">
             <div class="bg-white border border-blue-200 rounded-xl overflow-hidden">
                 <table class="w-full text-sm">
@@ -76,7 +73,6 @@
             </div>
         </div>
 
-        {{-- Panneau latéral --}}
         <div class="w-64 flex-shrink-0">
             <div class="bg-white border border-blue-200 rounded-xl overflow-hidden">
 
