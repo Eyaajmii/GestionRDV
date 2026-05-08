@@ -173,7 +173,7 @@
                                         data-patient="{{ $rdv->patient_id }}"
                                         onclick="chargerResume(this.dataset.patient, this)"
                                         class="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-lg border border-blue-300 text-blue-800 bg-blue-100 hover:bg-blue-200 transition-colors">
-                                        ✦ Résumé IA
+                                        Résumé IA
                                     </button>
                                     @if($statut === 'planifie')
                                     <form method="POST" action="{{ route('rendezvous.confirmer', $rdv->id) }}">
@@ -360,7 +360,7 @@
         const zone = document.getElementById('resume-' + patientId);
         if (zone.style.display === 'block') {
             zone.style.display = 'none';
-            btn.textContent = '✦ Résumé IA';
+            btn.textContent = ' Résumé IA';
             return;
         }
         btn.textContent = 'Chargement…';

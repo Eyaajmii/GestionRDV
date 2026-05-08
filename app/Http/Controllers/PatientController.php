@@ -72,7 +72,7 @@ class PatientController extends Controller
         })->implode("\n");
 
         $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='
-    . config('services.gemini.key');
+            . config('services.gemini.key');
 
         try {
             $response = Http::post($url, [
