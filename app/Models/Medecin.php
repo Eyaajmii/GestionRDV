@@ -15,7 +15,11 @@ class Medecin extends Model
         'specialite',
         'telephone',
         'emailPro',
-        'horaires_disponibles'
+        'horaires_disponibles',
+        'categorie',
+        'experience',
+        'statut_dispo',
+        'first_login'
     ];
 
     protected $casts = [

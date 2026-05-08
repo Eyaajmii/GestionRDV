@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medecin;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Patient;
+use App\Models\User;
+
 
 class MedecinController extends Controller
 {
@@ -20,55 +22,90 @@ class MedecinController extends Controller
 
         return view('medecin.index', compact('medecins'));
     }
-
-    public function show($id)
+    public function create()
     {
-        $medecin = Medecin::with(['user', 'rendezVous'])->findOrFail($id);
-
-        $slots = [];
-
-        foreach ($medecin->horaires_disponibles ?? [] as $horaire) {
-
-            $start = strtotime($horaire['start']);
-            $end = strtotime($horaire['end']);
-
-            while ($start < $end) {
-                $slots[] = date('H:i', $start);
-                $start = strtotime('+30 minutes', $start);
-            }
-        }
-
-        return view('medecin.show', compact('medecin', 'slots'));
+        return view('medecin.create');
     }
-
-    public function edit()
+    public function store(Request $request)
     {
-        $medecin = Auth::user()->medecin;
-
-        if (!$medecin) {
-            abort(404);
-        }
-
-        return view('medecins.edit', compact('medecin'));
-    }
-
-    public function update(Request $request)
-    {
-        $medecin = Auth::user()->medecin;
-
-        if (!$medecin) {
-            abort(404);
-        }
-
-        $validated = $request->validate([
-            'nom' => 'required|string',
-            'prenom' => 'required|string',
-            'telephone' => 'required|string',
-            'specialite' => 'required|string',
+        $request->validate([
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
         ]);
 
-        $medecin->update($validated);
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+            'role'     => 'medecin',
+        ]);
 
-        return back()->with('success', 'Profil mis à jour');
+        Medecin::create([
+            'user_id'   => $user->id,
+            'nom'       => $request->name,
+            'prenom'    => $request->prenom ?? '',
+            'specialite' => $request->specialite ?? 'generaliste',
+            'telephone' => $request->telephone ?? '',
+            'statut_dispo' => 'disponible',
+            'first_login'  => true,
+        ]);
+
+        return redirect()->route('medecin.index')->with('success', 'Médecin créé avec succès.');
+    }
+    public function show($id)
+    {
+        $medecin = Medecin::with('user')->findOrFail($id);
+
+        return response()->json($medecin);
+    }
+
+    public function edit($id)
+    {
+        $medecin = Medecin::findOrFail($id);
+
+        return view('medecin.edit', compact('medecin'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $medecin = Medecin::with('user')->findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'nom' => 'required|string',
+            'prenom' => 'required|string',
+            'specialite' => 'required|string',
+            'telephone' => 'required|string',
+            'emailPro' => 'nullable|email',
+            'categorie' => 'nullable|string',
+            'experience' => 'nullable|string',
+            'statut_dispo' => 'required|string',
+            'horaires_disponibles' => 'nullable',
+
+        ]);
+
+        $medecin->user->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ]);
+
+        $medecin->update([
+            'nom' => $validated['nom'],
+            'prenom' => $validated['prenom'],
+            'specialite' => $validated['specialite'],
+            'telephone' => $validated['telephone'],
+            'emailPro' => $validated['emailPro'] ?? null,
+            'categorie' => $validated['categorie'] ?? null,
+            'experience' => $validated['experience'] ?? null,
+            'statut_dispo' => $validated['statut_dispo'],
+            'horaires_disponibles' => $request->horaires_disponibles
+                ? json_decode($request->horaires_disponibles, true)
+                : null,
+        ]);
+
+        return redirect()->route('medecin.index')
+            ->with('success', 'Médecin mis à jour avec succès');
     }
 }

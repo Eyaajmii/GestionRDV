@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('medecin_id')->constrained()->cascadeOnDelete();
             $table->date('date');
-            $table->time('Heure');
+            $table->time('heure');
             $table->string('motif');
             $table->string('statut')->default('planifié');
         });

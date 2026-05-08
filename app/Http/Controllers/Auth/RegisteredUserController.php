@@ -32,9 +32,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role'=>['required','in:patient,doctor,admin'],
+            'role' => ['required', 'in:patient,medecin,admin'],
         ]);
 
         $user = User::create([
@@ -48,20 +48,24 @@ class RegisteredUserController extends Controller
                 'user_id' => $user->id,
                 'nom' => $request->name,
                 'prenom' => '',
-                'telephone'=>'',
-                'date_naissance'=>null
+                'telephone' => '',
+                'date_naissance' => null
             ]);
         }
-        
+
         if ($request->role === 'medecin') {
             \App\Models\Medecin::create([
                 'user_id' => $user->id,
                 'nom' => $request->name,
                 'prenom' => '',
                 'specialite' => 'generaliste',
-                'telephone'=>'',
-                'emailPro'=>'',
-                'horaires_disponibles'=>null
+                'telephone' => '',
+                'emailPro' => null,
+                'horaires_disponibles' => null,
+                'categorie' => null,
+                'experience' => null,
+                'statut_dispo' => 'disponible',
+                'first_login' => true
             ]);
         }
 

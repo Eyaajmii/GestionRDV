@@ -22,18 +22,21 @@ class DashboardController extends Controller
         if ($user->medecin) {
 
             $medecin = $user->medecin;
-
+        
+            $rdvs_today = $medecin->rendezVous()
+                ->whereDate('date', today())
+                ->orderBy('heure', 'asc')
+                ->get();
+        
             $stats = [
                 'total_rdv' => $medecin->rendezVous()->count(),
-                'rdv_today' => $medecin->rendezVous()
-                    ->whereDate('date', today())
-                    ->count(),
+                'rdv_today' => $rdvs_today->count(),
                 'prochains_rdv' => $medecin->rendezVous()
                     ->where('date', '>=', today())
                     ->count(),
             ];
-
-            return view('medecin.dashboard', compact('stats', 'medecin'));
+        
+            return view('medecin.dashboard', compact('stats', 'medecin', 'rdvs_today'));
         }
 
         //PATIENT
